@@ -46,14 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Centroid.cs" />
+    <Compile Include="Cluster.cs" />
+    <Compile Include="ClustersExtension.cs" />
+    <Compile Include="DrawingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="DrawingForm.Designer.cs">
+      <DependentUpon>DrawingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="IKmean.cs" />
+    <Compile Include="KMeanDemo.cs" />
+    <Compile Include="KPoint.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DrawingForm.resx">
+      <DependentUpon>DrawingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
