@@ -13,6 +13,8 @@ namespace Kmeans
 {
     public partial class DrawingForm : Form
     {
+        private const Int32 PBSize = 800;
+
         private Bitmap bitmap;
         private Graphics graphics;
         private Pen pen;
@@ -31,15 +33,15 @@ namespace Kmeans
         {
         }
 
-        private void DrawingForm_KeyPress(object sender, KeyPressEventArgs e)
+        private async void DrawingForm_KeyPress(object sender, KeyPressEventArgs e)
         {
             bitmap = new Bitmap(pb.Width, pb.Height);
             graphics = Graphics.FromImage(bitmap);
             pen = new Pen(Color.Black);
 
-            IKmean demo = new KMeanDemo(100000, 5, 0, pb.Width, 0, pb.Height);
+            IKmean demo = new KMeanDemo(200000, 7, 0, pb.Width, 0, pb.Height);
 
-            bool changed;
+            bool changed = true;
             do
             {
                 foreach (var cluster in demo.Clusters)
@@ -51,13 +53,19 @@ namespace Kmeans
 
                     graphics.FillEllipse(brush, new Rectangle(cluster.Centroid.point, new Size(10, 10)));
                 }
+
                 pb.Image = bitmap;
                 pb.Invalidate();
 
-                demo.ReEvaluateCentroids(out changed);
-                demo.ReClasterPoints();
+                Task<bool> task = new Task<bool>(() =>
+                {
+                    demo.ReEvaluateCentroids(out changed);
+                    demo.ReClasterPoints();
+                    return changed;
+                });
 
-                if (changed)
+                task.Start();
+                if (await task)
                     graphics.Clear(pb.BackColor);
             } while (changed);
         }

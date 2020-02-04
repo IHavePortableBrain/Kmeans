@@ -36,7 +36,7 @@
             // 
             this.pb.Location = new System.Drawing.Point(0, 0);
             this.pb.Name = "pb";
-            this.pb.Size = new System.Drawing.Size(500, 500);
+            this.pb.Size = new System.Drawing.Size(PBSize, PBSize);
             this.pb.TabIndex = 0;
             this.pb.TabStop = false;
             // 
@@ -44,7 +44,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 500);
+            this.ClientSize = new System.Drawing.Size(PBSize, PBSize);
             this.Controls.Add(this.pb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "DrawingForm";
