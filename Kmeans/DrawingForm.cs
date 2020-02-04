@@ -13,24 +13,14 @@ namespace Kmeans
 {
     public partial class DrawingForm : Form
     {
-        private const Int32 PBSize = 800;
-
         private Bitmap bitmap;
         private Graphics graphics;
         private Pen pen;
-        private Brush brush = new SolidBrush(Color.OrangeRed);
+        private Brush brush = new SolidBrush(Color.Black);
 
         public DrawingForm()
         {
             InitializeComponent();
-        }
-
-        private void DrawingForm_Shown(object sender, EventArgs e)
-        {
-        }
-
-        private void DrawingForm_MouseClick(object sender, MouseEventArgs e)
-        {
         }
 
         private async void DrawingForm_KeyPress(object sender, KeyPressEventArgs e)
@@ -39,7 +29,7 @@ namespace Kmeans
             graphics = Graphics.FromImage(bitmap);
             pen = new Pen(Color.Black);
 
-            IKmean demo = new KMeanDemo(200000, 7, 0, pb.Width, 0, pb.Height);
+            IMinMax demo = new MinMaxDemo(200000, 7, 0, pb.Width, 0, pb.Height);
 
             bool changed = true;
             do
@@ -59,8 +49,9 @@ namespace Kmeans
 
                 Task<bool> task = new Task<bool>(() =>
                 {
-                    demo.ReEvaluateCentroids(out changed);
-                    demo.ReClasterPoints();
+                    demo.EvaluateCentroids(out changed);
+                    if (changed)
+                        demo.ReClasterPoints();
                     return changed;
                 });
 

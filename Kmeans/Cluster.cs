@@ -12,12 +12,16 @@ namespace Kmeans
         private List<KPoint> kPoints;
         private Centroid centroid;
         private readonly Color color;
+        private Point mostDistantPoint;
+        private double maxDistance;
 
         internal Centroid Centroid => centroid;
 
         internal Color Color => color;
 
         internal List<KPoint> KPoints { get => kPoints; set => kPoints = value; }
+        public Point MostDistantPoint { get => mostDistantPoint; set => mostDistantPoint = value; }
+        public double MaxDistance { get => maxDistance; set => maxDistance = value; }
 
         public Cluster(Color color) : this(color, null, new KPoint[0])
         {
@@ -62,6 +66,24 @@ namespace Kmeans
             centroid = newCetroid;
 
             return centroid;
+        }
+
+        internal double EvaluateClusterMaxInnerDistance()
+        {
+            maxDistance = double.MinValue; //rewrite? with minDistance = distance to first cluster
+
+            foreach (var kPoint in kPoints)
+            {
+                double distance = kPoint.DistanceTo(this.centroid);
+
+                if (distance > maxDistance)
+                {
+                    maxDistance = distance;
+                    mostDistantPoint = kPoint;
+                }
+            }
+
+            return maxDistance;
         }
     }
 }

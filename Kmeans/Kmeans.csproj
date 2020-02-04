@@ -55,8 +55,8 @@
     <Compile Include="DrawingForm.Designer.cs">
       <DependentUpon>DrawingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="IKmean.cs" />
-    <Compile Include="KMeanDemo.cs" />
+    <Compile Include="IMinMax.cs" />
+    <Compile Include="MinMaxDemo.cs" />
     <Compile Include="KPoint.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

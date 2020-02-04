@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Kmeans
 {
-    internal interface IKmean
+    internal interface IMinMax
     {
         KPoint[] KPoints { get; }
         Centroid[] Centroids { get; }
         Cluster[] Clusters { get; }
 
-        Centroid[] ReEvaluateCentroids(out bool changed);
+        Centroid[] EvaluateCentroids(out bool changed);
 
         KPoint[] ReClasterPoints();
     }

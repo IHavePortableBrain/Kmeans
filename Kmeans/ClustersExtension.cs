@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using System.Linq;
-
 namespace Kmeans
 {
     public static class ClustersExtension
@@ -24,6 +22,7 @@ namespace Kmeans
             foreach (var kPoint in kPoints)
             {
                 double minDistance = double.MaxValue; //rewrite? with minDistance = distance to first cluster
+
                 Cluster hostCluster = null;
                 foreach (var claster in clusters)
                 {
@@ -37,6 +36,20 @@ namespace Kmeans
                 }
                 hostCluster.AddKPoint(kPoint);
             }
+        }
+
+        static internal double EvaluateCentroidsAvgDistance(this Cluster[] clusters)
+        {
+            double result = 0f;
+
+            Centroid[] centroids = clusters.GetCentroids();
+            for (int i = 0; i < clusters.Length - 1; i++)
+                result += new KPoint(centroids[i].point).DistanceTo(new KPoint(centroids[i + 1].point));
+
+            if (clusters.Length > 1)
+                result = result / (double)(clusters.Length - 1);
+
+            return result;
         }
     }
 }
