@@ -48,7 +48,7 @@
             this.Controls.Add(this.pb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "DrawingForm";
-            this.Text = "lab1";
+            this.Text = "lab2";
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DrawingForm_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.pb)).EndInit();
             this.ResumeLayout(false);
