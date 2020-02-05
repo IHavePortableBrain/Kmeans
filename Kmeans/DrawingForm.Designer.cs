@@ -2,8 +2,6 @@
 {
     partial class DrawingForm
     {
-        private const int PBSize = 1000;
-
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -33,13 +31,20 @@
             this.pb = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pb)).BeginInit();
             this.SuspendLayout();
-            
+            // 
+            // pb
+            // 
+            this.pb.Location = new System.Drawing.Point(0, 0);
+            this.pb.Name = "pb";
+            this.pb.Size = new System.Drawing.Size(1000, 1000);
+            this.pb.TabIndex = 0;
+            this.pb.TabStop = false;
             // 
             // DrawingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(PBSize, PBSize);
+            this.ClientSize = new System.Drawing.Size(1000, 1000);
             this.Controls.Add(this.pb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "DrawingForm";
@@ -47,14 +52,6 @@
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DrawingForm_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.pb)).EndInit();
             this.ResumeLayout(false);
-            // 
-            // pb
-            // 
-            this.pb.Location = new System.Drawing.Point(0, 0);
-            this.pb.Name = "pb";
-            this.pb.Size = new System.Drawing.Size(PBSize, PBSize);
-            this.pb.TabIndex = 0;
-            this.pb.TabStop = false;
 
         }
 

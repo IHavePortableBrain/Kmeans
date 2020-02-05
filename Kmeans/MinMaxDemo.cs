@@ -9,7 +9,7 @@ namespace Kmeans
 {
     internal class MinMaxDemo : IMinMax
     {
-        private const Int32 maxClusterCount = 7;
+        private const Int32 maxClusterCount = 10;
 
         private readonly Random random = new Random();
 
@@ -34,7 +34,7 @@ namespace Kmeans
             this.centroidCount = centroidCount;
 
             clusterColor = new Color[maxClusterCount] { Color.Red, Color.Orange, Color.Yellow, Color.Green,
-                Color.Blue, Color.DarkBlue, Color.Violet };
+                Color.Blue, Color.DarkBlue, Color.Violet, Color.Chocolate, Color.Crimson, Color.DarkCyan};
 
             kPoints = InitKPoints(minX, maxX, minY, maxY);
 
@@ -69,6 +69,8 @@ namespace Kmeans
 
         public Centroid[] EvaluateCentroids(out bool changed)
         {
+            changed = false;
+
             double halfAvgInterCentroidsDistanse = clusters.ToArray().EvaluateCentroidsAvgDistance() / 2;
 
             double maxInnerDistance = clusters.Select(cluster => cluster.EvaluateClusterMaxInnerDistance()).ToArray().Max();
@@ -83,8 +85,6 @@ namespace Kmeans
 
                 clusters.Add(new Cluster(clusterColor[clusters.Count], centroidOfNewCluster));
             }
-            else
-                changed = false;
 
             return clusters.ToArray().GetCentroids();
         }

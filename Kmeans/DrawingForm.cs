@@ -13,6 +13,7 @@ namespace Kmeans
 {
     public partial class DrawingForm : Form
     {
+        private const Int32 bitmapPadding = 10;
         private Bitmap bitmap;
         private Graphics graphics;
         private Pen pen;
@@ -29,7 +30,7 @@ namespace Kmeans
             graphics = Graphics.FromImage(bitmap);
             pen = new Pen(Color.Black);
 
-            IMinMax demo = new MinMaxDemo(200000, 7, 0, pb.Width, 0, pb.Height);
+            IMinMax demo = new MinMaxDemo(200000, 7, bitmapPadding, pb.Width - bitmapPadding, bitmapPadding, pb.Height - bitmapPadding);
 
             bool changed = true;
             do
@@ -50,8 +51,8 @@ namespace Kmeans
                 Task<bool> task = new Task<bool>(() =>
                 {
                     demo.EvaluateCentroids(out changed);
-                    if (changed)
-                        demo.ReClasterPoints();
+
+                    demo.ReClasterPoints();
                     return changed;
                 });
 
