@@ -18,7 +18,7 @@ namespace Kmeans
 
         public double DistanceTo(KPoint other)
         {
-            return Math.Pow(other.point.X - this.point.X, 2) + Math.Pow(other.point.Y - this.point.Y, 2);
+            return Math.Sqrt(Math.Pow(other.point.X - this.point.X, 2) + Math.Pow(other.point.Y - this.point.Y, 2));
         }
 
         public static implicit operator Point(KPoint kPoint)

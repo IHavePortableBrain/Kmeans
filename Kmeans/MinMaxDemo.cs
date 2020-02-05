@@ -69,8 +69,6 @@ namespace Kmeans
 
         public Centroid[] EvaluateCentroids(out bool changed)
         {
-            changed = false;
-
             double halfAvgInterCentroidsDistanse = clusters.ToArray().EvaluateCentroidsAvgDistance() / 2;
 
             double maxInnerDistance = clusters.Select(cluster => cluster.EvaluateClusterMaxInnerDistance()).ToArray().Max();
@@ -85,6 +83,8 @@ namespace Kmeans
 
                 clusters.Add(new Cluster(clusterColor[clusters.Count], centroidOfNewCluster));
             }
+            else
+                changed = false;
 
             return clusters.ToArray().GetCentroids();
         }
